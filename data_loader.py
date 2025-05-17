@@ -6,9 +6,9 @@ from langchain.docstore.document import Document
 import logging
 
 logging.basicConfig(
-    level=logging.INFO,
-    filename="app.log",
+    level=logging.ERROR,
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+    filename="app.log",
 )
 logger = logging.getLogger(__name__)
 

@@ -2,6 +2,5 @@ venv/
 __pycache__/
 *.pyc
 .env
-documents/
 vector_store.pkl
 vector_store_hash.pkl

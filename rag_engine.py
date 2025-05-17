@@ -185,7 +185,7 @@ def query_groq(query):
     ])
 
     prompt = f"""
-You are an AI assistant for the Pakistan Engineering Council (PEC). Based on the context below, provide a precise answer to the user's question about PEC registration policies. Include relevant policy title, policy number, and approval date if available.
+You are an AI assistant for the Pakistan Engineering Council (PEC). Based on the context below, provide a precise answer to the user's question about PEC policies. 
 
 Context:
 {context}

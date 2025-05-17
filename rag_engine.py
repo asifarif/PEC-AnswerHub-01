@@ -10,6 +10,8 @@ from langchain.docstore.document import Document
 import logging
 import torch
 import tenacity
+import hashlib
+import json
 
 # Set up logging
 logging.basicConfig(
@@ -37,6 +39,53 @@ if not torch.__version__.startswith("2."):
 EMBEDDING_MODEL = SentenceTransformer("all-MiniLM-L12-v2")
 VECTOR_STORE_PATH = "vector_store.pkl"
 GROQ_MODEL = "llama3-70b-8192"
+DOCUMENTS_DIR = "documents"
+POLICY_LINKS_PATH = "policy_links.json"
+HASH_PATH = "vector_store_hash.pkl"
+
+def compute_file_hash(file_path):
+    """Compute SHA-256 hash of a file."""
+    sha256 = hashlib.sha256()
+    with open(file_path, "rb") as f:
+        for chunk in iter(lambda: f.read(4096), b""):
+            sha256.update(chunk)
+    return sha256.hexdigest()
+
+def compute_documents_hash():
+    """Compute hash of policy_links.json and all PDFs in documents/."""
+    try:
+        with open(POLICY_LINKS_PATH, "r") as f:
+            policy_data = json.load(f)
+        policy_hash = hashlib.sha256(json.dumps(policy_data, sort_keys=True).encode()).hexdigest()
+        
+        pdf_hashes = []
+        for item in policy_data.get("policies", []):
+            pdf_path = os.path.join(DOCUMENTS_DIR, f"{item['title']}.pdf")
+            if os.path.exists(pdf_path):
+                pdf_hashes.append(compute_file_hash(pdf_path))
+        
+        combined = policy_hash + "".join(sorted(pdf_hashes))
+        return hashlib.sha256(combined.encode()).hexdigest()
+    except Exception as e:
+        logger.error(f"Error computing documents hash: {str(e)}")
+        return None
+
+def check_vector_store_validity():
+    """Check if vector_store.pkl is valid by comparing file hashes."""
+    if not os.path.exists(VECTOR_STORE_PATH) or not os.path.exists(HASH_PATH):
+        return False
+    
+    current_hash = compute_documents_hash()
+    if not current_hash:
+        return False
+    
+    try:
+        with open(HASH_PATH, "rb") as f:
+            stored_hash = pickle.load(f)
+        return current_hash == stored_hash
+    except Exception as e:
+        logger.error(f"Error checking vector store hash: {str(e)}")
+        return False
 
 def create_vector_store():
     """Create and save a FAISS vector store from PEC documents."""
@@ -66,33 +115,55 @@ def create_vector_store():
                 "chunk": chunk
             })
 
+    logger.info(f"Generated {len(texts)} document chunks")
+    if len(texts) == 0:
+        logger.error("No valid document chunks generated.")
+        raise ValueError("No valid document chunks generated.")
+
     embeddings = EMBEDDING_MODEL.encode(texts, show_progress_bar=True)
     dimension = embeddings.shape[1]
     
-    # Use IndexIVFFlat for faster, scalable search
-    nlist = 100  # Number of clusters
+    # Use IndexIVFFlat with dynamic nlist
+    nlist = min(10, len(texts))  # Ensure nlist <= number of chunks
     quantizer = faiss.IndexFlatL2(dimension)
     index = faiss.IndexIVFFlat(quantizer, dimension, nlist)
+    logger.info(f"Created IndexIVFFlat with dimension {dimension}, nlist {nlist}")
+    
+    # Train index only if sufficient data
+    if len(embeddings) < nlist:
+        logger.error(f"Insufficient chunks ({len(embeddings)}) for nlist ({nlist})")
+        raise ValueError(f"Number of chunks ({len(embeddings)}) must be at least {nlist}")
+    
     index.train(np.array(embeddings, dtype=np.float32))
     index.add(np.array(embeddings, dtype=np.float32))
-    index.nprobe = 10  # Number of clusters to search (trade-off between speed and accuracy)
+    index.nprobe = 5  # Reduced for smaller nlist
 
     with open(VECTOR_STORE_PATH, "wb") as f:
         pickle.dump((index, texts, metadatas), f)
+    
+    # Save hash of current documents
+    current_hash = compute_documents_hash()
+    if current_hash:
+        with open(HASH_PATH, "wb") as f:
+            pickle.dump(current_hash, f)
+    
     logger.info("Vector store created and saved.")
 
 def load_vector_store():
-    """Load the FAISS vector store."""
-    if not os.path.exists(VECTOR_STORE_PATH):
-        logger.warning("Vector store not found. Creating a new one...")
+    """Load the FAISS vector store, regenerating if invalid."""
+    if not check_vector_store_validity():
+        logger.warning("Vector store invalid or not found. Creating a new one...")
         create_vector_store()
     with open(VECTOR_STORE_PATH, "rb") as f:
-        return pickle.load(f)
+        index, texts, metadatas = pickle.load(f)
+    logger.info(f"Loaded index type: {type(index).__name__}")
+    return index, texts, metadatas
 
 def retrieve_chunks(query, k=10):
     """Retrieve top-k relevant document chunks for the query."""
     index, texts, metadatas = load_vector_store()
     query_embedding = EMBEDDING_MODEL.encode([query])
+    logger.info(f"Searching index type: {type(index).__name__}, k={k}")
     D, I = index.search(np.array(query_embedding, dtype=np.float32), k)
     return [metadatas[i] for i in I[0]]
 
@@ -114,7 +185,7 @@ def query_groq(query):
     ])
 
     prompt = f"""
-You are an AI assistant for the Pakistan Engineering Council (PEC). Based on the context below, provide a precise answer to the user's question about PEC  policies. Include relevant policy title, policy number, and approval date if available.
+You are an AI assistant for the Pakistan Engineering Council (PEC). Based on the context below, provide a precise answer to the user's question about PEC registration policies. Include relevant policy title, policy number, and approval date if available.
 
 Context:
 {context}
@@ -126,7 +197,7 @@ Answer:
     logger.info("Initializing Groq client...")
     try:
         client = Groq(api_key=GROQ_API_KEY)
-        logger.info("Groq client initialized successfully.")
+        logger.info("Grok client initialized successfully.")
     except Exception as e:
         logger.error(f"Failed to initialize Groq client: {str(e)}")
         raise

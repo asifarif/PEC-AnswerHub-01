@@ -21,6 +21,16 @@ Activate the environment: source venv/bin/activate (Linux/Mac) or venv\Scripts\a
 Install dependencies: pip install -r requirements.txt
 Create .env with GROQ_API_KEY (get from https://x.ai/api).
 
+Customizing the Frontend:
+PEC Logo:
+Replace the placeholder base64 string in app.py (PEC_LOGO_BASE64) with the actual PEC logo.
+Convert the logo (PNG/JPG) to base64 using an online tool (e.g., https://www.base64-image.de/).
+Update the src attribute in the <img> tag in app.py.
+
+Styling:
+Edit style.css to modify colors, fonts, or layout.
+Ensure style.css is in the project root and loaded in app.py.
+
 Run: streamlit run app.py
 
 Deployment:

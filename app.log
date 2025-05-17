@@ -224,3 +224,507 @@
 2025-05-17 14:37:13,707 - rag_engine - INFO - Grok client initialized successfully.
 2025-05-17 14:37:15,093 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
 2025-05-17 14:37:15,096 - __main__ - INFO - Query answered successfully.
+2025-05-17 18:00:32,435 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-05-17 18:00:32,435 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-mpnet-base-v2
+2025-05-17 18:00:36,081 - huggingface_hub.file_download - WARNING - Xet Storage is enabled for this repo, but the 'hf_xet' package is not installed. Falling back to regular HTTP download. For better performance, install the package with: `pip install huggingface_hub[hf_xet]` or `pip install hf_xet`
+2025-05-17 18:02:10,119 - __main__ - INFO - Processing query: what is company categories, like c1 and c2 etc
+2025-05-17 18:02:10,120 - rag_engine - WARNING - Vector store invalid or not found. Creating a new one...
+2025-05-17 18:02:10,120 - rag_engine - INFO - Creating vector store...
+2025-05-17 18:02:10,184 - data_loader - INFO - Loaded document: Professional Engineer Registration
+2025-05-17 18:02:10,206 - data_loader - INFO - Loaded document: Registered Engineering Registration
+2025-05-17 18:02:10,225 - data_loader - INFO - Loaded document: Guidelines for Membership Renewal
+2025-05-17 18:02:10,225 - data_loader - INFO - Downloading: Guidelines for New, Renewal and Upgradation of Constructors/Operators Licence
+2025-05-17 18:02:15,060 - data_loader - ERROR - Failed to download Guidelines for New, Renewal and Upgradation of Constructors/Operators Licence: [Errno 2] No such file or directory: 'documents/Guidelines for New, Renewal and Upgradation of Constructors'
+2025-05-17 18:02:15,097 - data_loader - INFO - Loaded document: Professional Competency Profile
+2025-05-17 18:02:15,097 - rag_engine - INFO - Generated 0 document chunks
+2025-05-17 18:02:15,097 - rag_engine - ERROR - No valid document chunks generated.
+2025-05-17 18:02:19,102 - rag_engine - WARNING - Vector store invalid or not found. Creating a new one...
+2025-05-17 18:02:19,102 - rag_engine - INFO - Creating vector store...
+2025-05-17 18:02:19,170 - data_loader - INFO - Loaded document: Professional Engineer Registration
+2025-05-17 18:02:19,187 - data_loader - INFO - Loaded document: Registered Engineering Registration
+2025-05-17 18:02:19,206 - data_loader - INFO - Loaded document: Guidelines for Membership Renewal
+2025-05-17 18:02:19,207 - data_loader - INFO - Downloading: Guidelines for New, Renewal and Upgradation of Constructors/Operators Licence
+2025-05-17 18:02:23,743 - data_loader - ERROR - Failed to download Guidelines for New, Renewal and Upgradation of Constructors/Operators Licence: [Errno 2] No such file or directory: 'documents/Guidelines for New, Renewal and Upgradation of Constructors'
+2025-05-17 18:02:23,788 - data_loader - INFO - Loaded document: Professional Competency Profile
+2025-05-17 18:02:23,788 - rag_engine - INFO - Generated 0 document chunks
+2025-05-17 18:02:23,788 - rag_engine - ERROR - No valid document chunks generated.
+2025-05-17 18:02:27,793 - rag_engine - WARNING - Vector store invalid or not found. Creating a new one...
+2025-05-17 18:02:27,793 - rag_engine - INFO - Creating vector store...
+2025-05-17 18:02:27,841 - data_loader - INFO - Loaded document: Professional Engineer Registration
+2025-05-17 18:02:27,857 - data_loader - INFO - Loaded document: Registered Engineering Registration
+2025-05-17 18:02:27,875 - data_loader - INFO - Loaded document: Guidelines for Membership Renewal
+2025-05-17 18:02:27,875 - data_loader - INFO - Downloading: Guidelines for New, Renewal and Upgradation of Constructors/Operators Licence
+2025-05-17 18:02:32,109 - data_loader - ERROR - Failed to download Guidelines for New, Renewal and Upgradation of Constructors/Operators Licence: [Errno 2] No such file or directory: 'documents/Guidelines for New, Renewal and Upgradation of Constructors'
+2025-05-17 18:02:32,154 - data_loader - INFO - Loaded document: Professional Competency Profile
+2025-05-17 18:02:32,154 - rag_engine - INFO - Generated 0 document chunks
+2025-05-17 18:02:32,154 - rag_engine - ERROR - No valid document chunks generated.
+2025-05-17 18:02:32,154 - __main__ - ERROR - Error processing query: No valid document chunks generated.
+2025-05-17 18:04:56,701 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-05-17 18:04:56,702 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-mpnet-base-v2
+2025-05-17 18:05:25,299 - __main__ - INFO - Processing query: what is difference between professional engineering and registered engineer
+2025-05-17 18:05:25,300 - rag_engine - WARNING - Vector store invalid or not found. Creating a new one...
+2025-05-17 18:05:25,300 - rag_engine - INFO - Creating vector store...
+2025-05-17 18:05:25,341 - data_loader - INFO - Loaded document: Professional Engineer Registration
+2025-05-17 18:05:25,368 - data_loader - INFO - Loaded document: Registered Engineering Registration
+2025-05-17 18:05:25,395 - data_loader - INFO - Loaded document: Guidelines for Membership Renewal
+2025-05-17 18:05:25,395 - data_loader - INFO - Downloading: Guidelines for New, Renewal and Upgradation of Constructors/Operators Licence
+2025-05-17 18:05:29,888 - data_loader - ERROR - Failed to download Guidelines for New, Renewal and Upgradation of Constructors/Operators Licence: [Errno 2] No such file or directory: 'documents/Guidelines for New, Renewal and Upgradation of Constructors'
+2025-05-17 18:05:29,924 - data_loader - INFO - Loaded document: Professional Competency Profile
+2025-05-17 18:05:29,924 - rag_engine - INFO - Downloaded and loaded 4 documents: [None, None, None, None]
+2025-05-17 18:05:29,924 - rag_engine - WARNING - Invalid or missing PDF path in metadata: 
+2025-05-17 18:05:29,924 - rag_engine - WARNING - Invalid or missing PDF path in metadata: 
+2025-05-17 18:05:29,924 - rag_engine - WARNING - Invalid or missing PDF path in metadata: 
+2025-05-17 18:05:29,924 - rag_engine - WARNING - Invalid or missing PDF path in metadata: 
+2025-05-17 18:05:29,924 - rag_engine - INFO - Generated 0 document chunks
+2025-05-17 18:05:29,924 - rag_engine - ERROR - No valid document chunks generated after all attempts.
+2025-05-17 18:05:33,929 - rag_engine - WARNING - Vector store invalid or not found. Creating a new one...
+2025-05-17 18:05:33,929 - rag_engine - INFO - Creating vector store...
+2025-05-17 18:05:33,985 - data_loader - INFO - Loaded document: Professional Engineer Registration
+2025-05-17 18:05:34,001 - data_loader - INFO - Loaded document: Registered Engineering Registration
+2025-05-17 18:05:34,018 - data_loader - INFO - Loaded document: Guidelines for Membership Renewal
+2025-05-17 18:05:34,018 - data_loader - INFO - Downloading: Guidelines for New, Renewal and Upgradation of Constructors/Operators Licence
+2025-05-17 18:05:38,394 - data_loader - ERROR - Failed to download Guidelines for New, Renewal and Upgradation of Constructors/Operators Licence: [Errno 2] No such file or directory: 'documents/Guidelines for New, Renewal and Upgradation of Constructors'
+2025-05-17 18:05:38,430 - data_loader - INFO - Loaded document: Professional Competency Profile
+2025-05-17 18:05:38,430 - rag_engine - INFO - Downloaded and loaded 4 documents: [None, None, None, None]
+2025-05-17 18:05:38,430 - rag_engine - WARNING - Invalid or missing PDF path in metadata: 
+2025-05-17 18:05:38,430 - rag_engine - WARNING - Invalid or missing PDF path in metadata: 
+2025-05-17 18:05:38,430 - rag_engine - WARNING - Invalid or missing PDF path in metadata: 
+2025-05-17 18:05:38,430 - rag_engine - WARNING - Invalid or missing PDF path in metadata: 
+2025-05-17 18:05:38,430 - rag_engine - INFO - Generated 0 document chunks
+2025-05-17 18:05:38,430 - rag_engine - ERROR - No valid document chunks generated after all attempts.
+2025-05-17 18:05:42,434 - rag_engine - WARNING - Vector store invalid or not found. Creating a new one...
+2025-05-17 18:05:42,435 - rag_engine - INFO - Creating vector store...
+2025-05-17 18:05:42,481 - data_loader - INFO - Loaded document: Professional Engineer Registration
+2025-05-17 18:05:42,498 - data_loader - INFO - Loaded document: Registered Engineering Registration
+2025-05-17 18:05:42,515 - data_loader - INFO - Loaded document: Guidelines for Membership Renewal
+2025-05-17 18:05:42,516 - data_loader - INFO - Downloading: Guidelines for New, Renewal and Upgradation of Constructors/Operators Licence
+2025-05-17 18:05:46,673 - data_loader - ERROR - Failed to download Guidelines for New, Renewal and Upgradation of Constructors/Operators Licence: [Errno 2] No such file or directory: 'documents/Guidelines for New, Renewal and Upgradation of Constructors'
+2025-05-17 18:05:46,711 - data_loader - INFO - Loaded document: Professional Competency Profile
+2025-05-17 18:05:46,711 - rag_engine - INFO - Downloaded and loaded 4 documents: [None, None, None, None]
+2025-05-17 18:05:46,711 - rag_engine - WARNING - Invalid or missing PDF path in metadata: 
+2025-05-17 18:05:46,711 - rag_engine - WARNING - Invalid or missing PDF path in metadata: 
+2025-05-17 18:05:46,711 - rag_engine - WARNING - Invalid or missing PDF path in metadata: 
+2025-05-17 18:05:46,711 - rag_engine - WARNING - Invalid or missing PDF path in metadata: 
+2025-05-17 18:05:46,711 - rag_engine - INFO - Generated 0 document chunks
+2025-05-17 18:05:46,711 - rag_engine - ERROR - No valid document chunks generated after all attempts.
+2025-05-17 18:05:46,711 - __main__ - ERROR - Error processing query: No valid document chunks generated.
+2025-05-17 18:09:14,219 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-05-17 18:09:14,219 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-mpnet-base-v2
+2025-05-17 18:09:24,223 - __main__ - INFO - Processing query: what is the criteria to become a professional engineer?
+2025-05-17 18:09:24,223 - rag_engine - WARNING - Vector store invalid or not found. Creating a new one...
+2025-05-17 18:09:24,223 - rag_engine - INFO - Creating vector store...
+2025-05-17 18:09:24,271 - data_loader - INFO - Loaded document: Professional Engineer Registration
+2025-05-17 18:09:24,288 - data_loader - INFO - Loaded document: Registered Engineering Registration
+2025-05-17 18:09:24,308 - data_loader - INFO - Loaded document: Guidelines for Membership Renewal
+2025-05-17 18:09:24,308 - data_loader - INFO - Downloading: Guidelines for New, Renewal and Upgradation of Constructors/Operators Licence
+2025-05-17 18:09:33,891 - data_loader - ERROR - Failed to download Guidelines for New, Renewal and Upgradation of Constructors/Operators Licence: [Errno 2] No such file or directory: 'documents/Guidelines for New, Renewal and Upgradation of Constructors'
+2025-05-17 18:09:33,935 - data_loader - INFO - Loaded document: Professional Competency Profile
+2025-05-17 18:09:33,936 - rag_engine - INFO - Downloaded and loaded 4 documents: [None, None, None, None]
+2025-05-17 18:09:33,936 - rag_engine - WARNING - Invalid or missing PDF path at index 0: 
+2025-05-17 18:09:33,936 - rag_engine - WARNING - Invalid or missing PDF path at index 1: 
+2025-05-17 18:09:33,936 - rag_engine - WARNING - Invalid or missing PDF path at index 2: 
+2025-05-17 18:09:33,936 - rag_engine - WARNING - Invalid or missing PDF path at index 3: 
+2025-05-17 18:09:33,936 - rag_engine - INFO - Generated 0 document chunks
+2025-05-17 18:09:33,936 - rag_engine - ERROR - No valid document chunks generated after all attempts.
+2025-05-17 18:09:37,940 - rag_engine - WARNING - Vector store invalid or not found. Creating a new one...
+2025-05-17 18:09:37,940 - rag_engine - INFO - Creating vector store...
+2025-05-17 18:09:37,989 - data_loader - INFO - Loaded document: Professional Engineer Registration
+2025-05-17 18:09:38,006 - data_loader - INFO - Loaded document: Registered Engineering Registration
+2025-05-17 18:09:38,024 - data_loader - INFO - Loaded document: Guidelines for Membership Renewal
+2025-05-17 18:09:38,024 - data_loader - INFO - Downloading: Guidelines for New, Renewal and Upgradation of Constructors/Operators Licence
+2025-05-17 18:09:42,503 - data_loader - ERROR - Failed to download Guidelines for New, Renewal and Upgradation of Constructors/Operators Licence: [Errno 2] No such file or directory: 'documents/Guidelines for New, Renewal and Upgradation of Constructors'
+2025-05-17 18:09:42,543 - data_loader - INFO - Loaded document: Professional Competency Profile
+2025-05-17 18:09:42,543 - rag_engine - INFO - Downloaded and loaded 4 documents: [None, None, None, None]
+2025-05-17 18:09:42,543 - rag_engine - WARNING - Invalid or missing PDF path at index 0: 
+2025-05-17 18:09:42,543 - rag_engine - WARNING - Invalid or missing PDF path at index 1: 
+2025-05-17 18:09:42,543 - rag_engine - WARNING - Invalid or missing PDF path at index 2: 
+2025-05-17 18:09:42,543 - rag_engine - WARNING - Invalid or missing PDF path at index 3: 
+2025-05-17 18:09:42,543 - rag_engine - INFO - Generated 0 document chunks
+2025-05-17 18:09:42,543 - rag_engine - ERROR - No valid document chunks generated after all attempts.
+2025-05-17 18:09:46,547 - rag_engine - WARNING - Vector store invalid or not found. Creating a new one...
+2025-05-17 18:09:46,548 - rag_engine - INFO - Creating vector store...
+2025-05-17 18:09:46,602 - data_loader - INFO - Loaded document: Professional Engineer Registration
+2025-05-17 18:09:46,618 - data_loader - INFO - Loaded document: Registered Engineering Registration
+2025-05-17 18:09:46,637 - data_loader - INFO - Loaded document: Guidelines for Membership Renewal
+2025-05-17 18:09:46,637 - data_loader - INFO - Downloading: Guidelines for New, Renewal and Upgradation of Constructors/Operators Licence
+2025-05-17 18:09:51,201 - data_loader - ERROR - Failed to download Guidelines for New, Renewal and Upgradation of Constructors/Operators Licence: [Errno 2] No such file or directory: 'documents/Guidelines for New, Renewal and Upgradation of Constructors'
+2025-05-17 18:09:51,245 - data_loader - INFO - Loaded document: Professional Competency Profile
+2025-05-17 18:09:51,245 - rag_engine - INFO - Downloaded and loaded 4 documents: [None, None, None, None]
+2025-05-17 18:09:51,245 - rag_engine - WARNING - Invalid or missing PDF path at index 0: 
+2025-05-17 18:09:51,245 - rag_engine - WARNING - Invalid or missing PDF path at index 1: 
+2025-05-17 18:09:51,245 - rag_engine - WARNING - Invalid or missing PDF path at index 2: 
+2025-05-17 18:09:51,245 - rag_engine - WARNING - Invalid or missing PDF path at index 3: 
+2025-05-17 18:09:51,245 - rag_engine - INFO - Generated 0 document chunks
+2025-05-17 18:09:51,245 - rag_engine - ERROR - No valid document chunks generated after all attempts.
+2025-05-17 18:09:51,245 - __main__ - ERROR - Error processing query: No valid document chunks generated.
+2025-05-17 18:10:34,134 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-05-17 18:10:34,134 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L12-v2
+2025-05-17 18:10:42,730 - __main__ - INFO - Processing query: what is company categories, like c1 and c2 etc
+2025-05-17 18:10:42,730 - rag_engine - WARNING - Vector store invalid or not found. Creating a new one...
+2025-05-17 18:10:42,730 - rag_engine - INFO - Creating vector store...
+2025-05-17 18:10:42,785 - data_loader - INFO - Loaded document: Professional Engineer Registration
+2025-05-17 18:10:42,802 - data_loader - INFO - Loaded document: Registered Engineering Registration
+2025-05-17 18:10:42,822 - data_loader - INFO - Loaded document: Guidelines for Membership Renewal
+2025-05-17 18:10:42,822 - data_loader - INFO - Downloading: Guidelines for New, Renewal and Upgradation of Constructors/Operators Licence
+2025-05-17 18:10:47,812 - data_loader - ERROR - Failed to download Guidelines for New, Renewal and Upgradation of Constructors/Operators Licence: [Errno 2] No such file or directory: 'documents/Guidelines for New, Renewal and Upgradation of Constructors'
+2025-05-17 18:10:47,853 - data_loader - INFO - Loaded document: Professional Competency Profile
+2025-05-17 18:10:47,853 - rag_engine - INFO - Generated 16 document chunks
+2025-05-17 18:10:48,291 - rag_engine - INFO - Created IndexIVFFlat with dimension 384, nlist 10
+2025-05-17 18:10:48,458 - rag_engine - INFO - Vector store created and saved.
+2025-05-17 18:10:48,459 - rag_engine - INFO - Loaded index type: IndexIVFFlat
+2025-05-17 18:10:48,528 - rag_engine - INFO - Searching index type: IndexIVFFlat, k=10
+2025-05-17 18:10:48,528 - rag_engine - INFO - Initializing Groq client...
+2025-05-17 18:10:48,552 - rag_engine - INFO - Grok client initialized successfully.
+2025-05-17 18:10:50,241 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-17 18:10:50,245 - __main__ - INFO - Query answered successfully.
+2025-05-17 18:18:40,761 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-05-17 18:18:40,761 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-mpnet-base-v2
+2025-05-17 18:18:56,746 - __main__ - INFO - Processing query: what is company categories, like c1 and c2 etc
+2025-05-17 18:18:56,746 - rag_engine - WARNING - Vector store invalid or not found. Creating a new one...
+2025-05-17 18:18:56,746 - rag_engine - INFO - Creating vector store...
+2025-05-17 18:18:56,827 - data_loader - INFO - Loaded document: Professional Engineer Registration
+2025-05-17 18:18:56,846 - data_loader - INFO - Loaded document: Registered Engineering Registration
+2025-05-17 18:18:56,866 - data_loader - INFO - Loaded document: Guidelines for Membership Renewal
+2025-05-17 18:18:56,867 - data_loader - INFO - Downloading: Guidelines for New, Renewal and Upgradation of Constructors/Operators Licence
+2025-05-17 18:19:01,275 - data_loader - ERROR - Failed to download Guidelines for New, Renewal and Upgradation of Constructors/Operators Licence: [Errno 2] No such file or directory: 'documents/Guidelines for New, Renewal and Upgradation of Constructors'
+2025-05-17 18:19:01,315 - data_loader - INFO - Loaded document: Professional Competency Profile
+2025-05-17 18:19:01,315 - rag_engine - INFO - Downloaded and loaded 4 documents: [None, None, None, None]
+2025-05-17 18:19:01,316 - rag_engine - INFO - Generated 24 document chunks
+2025-05-17 18:19:04,026 - rag_engine - INFO - Created IndexIVFFlat with dimension 768, nlist 50
+2025-05-17 18:19:04,026 - rag_engine - ERROR - Insufficient chunks (24) for nlist (50)
+2025-05-17 18:19:08,030 - rag_engine - WARNING - Vector store invalid or not found. Creating a new one...
+2025-05-17 18:19:08,031 - rag_engine - INFO - Creating vector store...
+2025-05-17 18:19:08,070 - data_loader - INFO - Loaded document: Professional Engineer Registration
+2025-05-17 18:19:08,086 - data_loader - INFO - Loaded document: Registered Engineering Registration
+2025-05-17 18:19:08,104 - data_loader - INFO - Loaded document: Guidelines for Membership Renewal
+2025-05-17 18:19:08,105 - data_loader - INFO - Downloading: Guidelines for New, Renewal and Upgradation of Constructors/Operators Licence
+2025-05-17 18:19:12,714 - data_loader - ERROR - Failed to download Guidelines for New, Renewal and Upgradation of Constructors/Operators Licence: [Errno 2] No such file or directory: 'documents/Guidelines for New, Renewal and Upgradation of Constructors'
+2025-05-17 18:19:12,751 - data_loader - INFO - Loaded document: Professional Competency Profile
+2025-05-17 18:19:12,752 - rag_engine - INFO - Downloaded and loaded 4 documents: [None, None, None, None]
+2025-05-17 18:19:12,752 - rag_engine - INFO - Generated 24 document chunks
+2025-05-17 18:19:15,428 - rag_engine - INFO - Created IndexIVFFlat with dimension 768, nlist 50
+2025-05-17 18:19:15,429 - rag_engine - ERROR - Insufficient chunks (24) for nlist (50)
+2025-05-17 18:19:19,433 - rag_engine - WARNING - Vector store invalid or not found. Creating a new one...
+2025-05-17 18:19:19,433 - rag_engine - INFO - Creating vector store...
+2025-05-17 18:19:19,486 - data_loader - INFO - Loaded document: Professional Engineer Registration
+2025-05-17 18:19:19,502 - data_loader - INFO - Loaded document: Registered Engineering Registration
+2025-05-17 18:19:19,521 - data_loader - INFO - Loaded document: Guidelines for Membership Renewal
+2025-05-17 18:19:19,521 - data_loader - INFO - Downloading: Guidelines for New, Renewal and Upgradation of Constructors/Operators Licence
+2025-05-17 18:19:23,705 - data_loader - ERROR - Failed to download Guidelines for New, Renewal and Upgradation of Constructors/Operators Licence: [Errno 2] No such file or directory: 'documents/Guidelines for New, Renewal and Upgradation of Constructors'
+2025-05-17 18:19:23,743 - data_loader - INFO - Loaded document: Professional Competency Profile
+2025-05-17 18:19:23,743 - rag_engine - INFO - Downloaded and loaded 4 documents: [None, None, None, None]
+2025-05-17 18:19:23,744 - rag_engine - INFO - Generated 24 document chunks
+2025-05-17 18:19:26,385 - rag_engine - INFO - Created IndexIVFFlat with dimension 768, nlist 50
+2025-05-17 18:19:26,385 - rag_engine - ERROR - Insufficient chunks (24) for nlist (50)
+2025-05-17 18:19:26,385 - __main__ - ERROR - Error processing query: Number of chunks (24) must be at least 50
+2025-05-17 18:19:42,968 - __main__ - INFO - Processing query: what is company categories, like c1 and c2 etc
+2025-05-17 18:19:42,968 - rag_engine - WARNING - Vector store invalid or not found. Creating a new one...
+2025-05-17 18:19:42,969 - rag_engine - INFO - Creating vector store...
+2025-05-17 18:19:43,020 - data_loader - INFO - Loaded document: Professional Engineer Registration
+2025-05-17 18:19:43,043 - data_loader - INFO - Loaded document: Registered Engineering Registration
+2025-05-17 18:19:43,061 - data_loader - INFO - Loaded document: Guidelines for Membership Renewal
+2025-05-17 18:19:43,062 - data_loader - INFO - Downloading: Guidelines for New, Renewal and Upgradation of Constructors/Operators Licence
+2025-05-17 18:19:47,432 - data_loader - ERROR - Failed to download Guidelines for New, Renewal and Upgradation of Constructors/Operators Licence: [Errno 2] No such file or directory: 'documents/Guidelines for New, Renewal and Upgradation of Constructors'
+2025-05-17 18:19:47,472 - data_loader - INFO - Loaded document: Professional Competency Profile
+2025-05-17 18:19:47,472 - rag_engine - INFO - Downloaded and loaded 4 documents: [None, None, None, None]
+2025-05-17 18:19:47,472 - rag_engine - INFO - Generated 24 document chunks
+2025-05-17 18:19:50,213 - rag_engine - INFO - Created IndexIVFFlat with dimension 768, nlist 50
+2025-05-17 18:19:50,213 - rag_engine - ERROR - Insufficient chunks (24) for nlist (50)
+2025-05-17 18:19:54,217 - rag_engine - WARNING - Vector store invalid or not found. Creating a new one...
+2025-05-17 18:19:54,218 - rag_engine - INFO - Creating vector store...
+2025-05-17 18:19:54,269 - data_loader - INFO - Loaded document: Professional Engineer Registration
+2025-05-17 18:19:54,285 - data_loader - INFO - Loaded document: Registered Engineering Registration
+2025-05-17 18:19:54,302 - data_loader - INFO - Loaded document: Guidelines for Membership Renewal
+2025-05-17 18:19:54,302 - data_loader - INFO - Downloading: Guidelines for New, Renewal and Upgradation of Constructors/Operators Licence
+2025-05-17 18:19:58,696 - data_loader - ERROR - Failed to download Guidelines for New, Renewal and Upgradation of Constructors/Operators Licence: [Errno 2] No such file or directory: 'documents/Guidelines for New, Renewal and Upgradation of Constructors'
+2025-05-17 18:19:58,737 - data_loader - INFO - Loaded document: Professional Competency Profile
+2025-05-17 18:19:58,737 - rag_engine - INFO - Downloaded and loaded 4 documents: [None, None, None, None]
+2025-05-17 18:19:58,738 - rag_engine - INFO - Generated 24 document chunks
+2025-05-17 18:20:01,280 - rag_engine - INFO - Created IndexIVFFlat with dimension 768, nlist 50
+2025-05-17 18:20:01,280 - rag_engine - ERROR - Insufficient chunks (24) for nlist (50)
+2025-05-17 18:20:05,285 - rag_engine - WARNING - Vector store invalid or not found. Creating a new one...
+2025-05-17 18:20:05,285 - rag_engine - INFO - Creating vector store...
+2025-05-17 18:20:05,330 - data_loader - INFO - Loaded document: Professional Engineer Registration
+2025-05-17 18:20:05,346 - data_loader - INFO - Loaded document: Registered Engineering Registration
+2025-05-17 18:20:05,364 - data_loader - INFO - Loaded document: Guidelines for Membership Renewal
+2025-05-17 18:20:05,364 - data_loader - INFO - Downloading: Guidelines for New, Renewal and Upgradation of Constructors/Operators Licence
+2025-05-17 18:20:09,649 - data_loader - ERROR - Failed to download Guidelines for New, Renewal and Upgradation of Constructors/Operators Licence: [Errno 2] No such file or directory: 'documents/Guidelines for New, Renewal and Upgradation of Constructors'
+2025-05-17 18:20:09,678 - data_loader - INFO - Loaded document: Professional Competency Profile
+2025-05-17 18:20:09,678 - rag_engine - INFO - Downloaded and loaded 4 documents: [None, None, None, None]
+2025-05-17 18:20:09,679 - rag_engine - INFO - Generated 24 document chunks
+2025-05-17 18:20:12,292 - rag_engine - INFO - Created IndexIVFFlat with dimension 768, nlist 50
+2025-05-17 18:20:12,292 - rag_engine - ERROR - Insufficient chunks (24) for nlist (50)
+2025-05-17 18:20:12,292 - __main__ - ERROR - Error processing query: Number of chunks (24) must be at least 50
+2025-05-17 18:21:32,269 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-05-17 18:21:32,269 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-mpnet-base-v2
+2025-05-17 18:21:40,609 - __main__ - INFO - Processing query: what is company categories, like c1 and c2 etc
+2025-05-17 18:21:40,610 - rag_engine - WARNING - Vector store invalid or not found. Creating a new one...
+2025-05-17 18:21:40,610 - rag_engine - INFO - Creating vector store...
+2025-05-17 18:21:40,651 - data_loader - INFO - Loaded document: Professional Engineer Registration
+2025-05-17 18:21:40,669 - data_loader - INFO - Loaded document: Registered Engineering Registration
+2025-05-17 18:21:40,700 - data_loader - INFO - Loaded document: Guidelines for Membership Renewal
+2025-05-17 18:21:40,700 - data_loader - INFO - Downloading: Guidelines for New, Renewal and Upgradation of Constructors/Operators Licence
+2025-05-17 18:21:45,248 - data_loader - ERROR - Failed to download Guidelines for New, Renewal and Upgradation of Constructors/Operators Licence: [Errno 2] No such file or directory: 'documents/Guidelines for New, Renewal and Upgradation of Constructors'
+2025-05-17 18:21:45,289 - data_loader - INFO - Loaded document: Professional Competency Profile
+2025-05-17 18:21:45,289 - rag_engine - INFO - Downloaded and loaded 4 documents: [None, None, None, None]
+2025-05-17 18:21:45,289 - rag_engine - INFO - Generated 37 document chunks
+2025-05-17 18:21:48,236 - rag_engine - INFO - Created IndexIVFFlat with dimension 768, nlist 6
+2025-05-17 18:21:48,358 - rag_engine - INFO - Vector store created and saved.
+2025-05-17 18:21:48,358 - rag_engine - INFO - Loaded index type: IndexIVFFlat
+2025-05-17 18:21:48,489 - rag_engine - INFO - Searching index type: IndexIVFFlat, k=10
+2025-05-17 18:21:48,490 - rag_engine - INFO - Initializing Groq client...
+2025-05-17 18:21:48,516 - rag_engine - INFO - Grok client initialized successfully.
+2025-05-17 18:21:49,939 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-17 18:21:49,945 - __main__ - INFO - Query answered successfully.
+2025-05-17 18:22:24,204 - __main__ - INFO - Processing query: what is the criteria to become a professional engineer?
+2025-05-17 18:22:24,211 - rag_engine - INFO - Loaded index type: IndexIVFFlat
+2025-05-17 18:22:24,261 - rag_engine - INFO - Searching index type: IndexIVFFlat, k=10
+2025-05-17 18:22:24,261 - rag_engine - INFO - Initializing Groq client...
+2025-05-17 18:22:24,287 - rag_engine - INFO - Grok client initialized successfully.
+2025-05-17 18:22:25,700 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-17 18:22:25,704 - __main__ - INFO - Query answered successfully.
+2025-05-17 18:23:41,970 - __main__ - INFO - Processing query: what are Authorities of Enrolment Committee (EC) & Enrolment Sub Committee (ESC):
+2025-05-17 18:23:41,972 - rag_engine - INFO - Loaded index type: IndexIVFFlat
+2025-05-17 18:23:42,091 - rag_engine - INFO - Searching index type: IndexIVFFlat, k=10
+2025-05-17 18:23:42,092 - rag_engine - INFO - Initializing Groq client...
+2025-05-17 18:23:42,108 - rag_engine - INFO - Grok client initialized successfully.
+2025-05-17 18:23:43,269 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-17 18:23:43,271 - __main__ - INFO - Query answered successfully.
+2025-05-17 18:25:07,286 - __main__ - INFO - Processing query: what are the Constructor's Categories 
+2025-05-17 18:25:07,289 - rag_engine - INFO - Loaded index type: IndexIVFFlat
+2025-05-17 18:25:07,419 - rag_engine - INFO - Searching index type: IndexIVFFlat, k=10
+2025-05-17 18:25:07,420 - rag_engine - INFO - Initializing Groq client...
+2025-05-17 18:25:07,445 - rag_engine - INFO - Grok client initialized successfully.
+2025-05-17 18:25:08,493 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-17 18:25:08,496 - __main__ - INFO - Query answered successfully.
+2025-05-17 18:26:16,815 - __main__ - INFO - Processing query: what is difference between professional engineer and registered engineer
+2025-05-17 18:26:16,817 - rag_engine - INFO - Loaded index type: IndexIVFFlat
+2025-05-17 18:26:16,903 - rag_engine - INFO - Searching index type: IndexIVFFlat, k=10
+2025-05-17 18:26:16,904 - rag_engine - INFO - Initializing Groq client...
+2025-05-17 18:26:16,928 - rag_engine - INFO - Grok client initialized successfully.
+2025-05-17 18:26:18,106 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-17 18:26:18,110 - __main__ - INFO - Query answered successfully.
+2025-05-17 18:27:04,908 - __main__ - INFO - Processing query: what is the process of registration as engineer?
+2025-05-17 18:27:04,913 - rag_engine - INFO - Loaded index type: IndexIVFFlat
+2025-05-17 18:27:04,978 - rag_engine - INFO - Searching index type: IndexIVFFlat, k=10
+2025-05-17 18:27:04,978 - rag_engine - INFO - Initializing Groq client...
+2025-05-17 18:27:05,004 - rag_engine - INFO - Grok client initialized successfully.
+2025-05-17 18:27:06,866 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-17 18:27:06,868 - __main__ - INFO - Query answered successfully.
+2025-05-17 18:27:46,297 - __main__ - INFO - Processing query: what is the process of registration as organization 
+2025-05-17 18:27:46,305 - rag_engine - INFO - Loaded index type: IndexIVFFlat
+2025-05-17 18:27:46,395 - rag_engine - INFO - Searching index type: IndexIVFFlat, k=10
+2025-05-17 18:27:46,395 - rag_engine - INFO - Initializing Groq client...
+2025-05-17 18:27:46,422 - rag_engine - INFO - Grok client initialized successfully.
+2025-05-17 18:27:47,927 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-17 18:27:47,930 - __main__ - INFO - Query answered successfully.
+2025-05-17 18:28:01,671 - __main__ - INFO - Processing query: what is the process of registration as c2 firm
+2025-05-17 18:28:01,678 - rag_engine - INFO - Loaded index type: IndexIVFFlat
+2025-05-17 18:28:01,893 - rag_engine - INFO - Searching index type: IndexIVFFlat, k=10
+2025-05-17 18:28:01,894 - rag_engine - INFO - Initializing Groq client...
+2025-05-17 18:28:01,917 - rag_engine - INFO - Grok client initialized successfully.
+2025-05-17 18:28:03,187 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-17 18:28:03,190 - __main__ - INFO - Query answered successfully.
+2025-05-17 18:29:27,890 - __main__ - INFO - Processing query: what is fees for C-3 upgradation or category requirements
+2025-05-17 18:29:27,892 - rag_engine - INFO - Loaded index type: IndexIVFFlat
+2025-05-17 18:29:28,066 - rag_engine - INFO - Searching index type: IndexIVFFlat, k=10
+2025-05-17 18:29:28,067 - rag_engine - INFO - Initializing Groq client...
+2025-05-17 18:29:28,085 - rag_engine - INFO - Grok client initialized successfully.
+2025-05-17 18:29:29,418 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-17 18:29:29,419 - __main__ - INFO - Query answered successfully.
+2025-05-17 18:36:15,921 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-05-17 18:36:15,921 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-mpnet-base-v2
+2025-05-17 18:36:24,982 - __main__ - INFO - Processing query: what is company categories, like c1 and c2 etc
+2025-05-17 18:36:24,982 - rag_engine - WARNING - Vector store invalid or not found. Creating a new one...
+2025-05-17 18:36:24,982 - rag_engine - INFO - Creating vector store...
+2025-05-17 18:36:25,030 - data_loader - INFO - Loaded document: Professional Engineer Registration
+2025-05-17 18:36:25,046 - data_loader - INFO - Loaded document: Registered Engineering Registration
+2025-05-17 18:36:25,065 - data_loader - INFO - Loaded document: Guidelines for Membership Renewal
+2025-05-17 18:36:25,065 - data_loader - INFO - Downloading: Guidelines for New, Renewal and Upgradation of Constructors/Operators Licence
+2025-05-17 18:36:29,350 - data_loader - ERROR - Failed to download Guidelines for New, Renewal and Upgradation of Constructors/Operators Licence: [Errno 2] No such file or directory: 'documents/Guidelines for New, Renewal and Upgradation of Constructors'
+2025-05-17 18:36:29,385 - data_loader - INFO - Loaded document: Professional Competency Profile
+2025-05-17 18:36:29,385 - rag_engine - INFO - Downloaded and loaded 4 documents: [None, None, None, None]
+2025-05-17 18:36:29,386 - rag_engine - INFO - Generated 66 document chunks
+2025-05-17 18:36:33,072 - rag_engine - INFO - Created IndexIVFFlat with dimension 768, nlist 8
+2025-05-17 18:36:33,330 - rag_engine - INFO - Vector store created and saved.
+2025-05-17 18:36:33,330 - rag_engine - INFO - Loaded index type: IndexIVFFlat
+2025-05-17 18:36:33,413 - rag_engine - INFO - Searching index type: IndexIVFFlat, k=10
+2025-05-17 18:36:33,413 - rag_engine - INFO - Initializing Groq client...
+2025-05-17 18:36:33,438 - rag_engine - INFO - Grok client initialized successfully.
+2025-05-17 18:36:34,937 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-17 18:36:34,943 - __main__ - INFO - Query answered successfully.
+2025-05-17 18:37:44,331 - __main__ - INFO - Processing query: What is the fee for C-3 upgradation?
+2025-05-17 18:37:44,333 - rag_engine - INFO - Loaded index type: IndexIVFFlat
+2025-05-17 18:37:44,380 - rag_engine - INFO - Searching index type: IndexIVFFlat, k=10
+2025-05-17 18:37:44,380 - rag_engine - INFO - Initializing Groq client...
+2025-05-17 18:37:44,416 - rag_engine - INFO - Grok client initialized successfully.
+2025-05-17 18:37:45,442 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-17 18:37:45,446 - __main__ - INFO - Query answered successfully.
+2025-05-17 18:39:00,674 - __main__ - INFO - Processing query: what is the difference between professional engineer and registered engineer?
+2025-05-17 18:39:00,680 - rag_engine - INFO - Loaded index type: IndexIVFFlat
+2025-05-17 18:39:00,762 - rag_engine - INFO - Searching index type: IndexIVFFlat, k=10
+2025-05-17 18:39:00,763 - rag_engine - INFO - Initializing Groq client...
+2025-05-17 18:39:00,796 - rag_engine - INFO - Grok client initialized successfully.
+2025-05-17 18:39:02,847 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-17 18:39:02,850 - __main__ - INFO - Query answered successfully.
+2025-05-17 18:39:43,181 - __main__ - INFO - Processing query: What is the fee for C-3 upgradation?
+2025-05-17 18:39:43,186 - rag_engine - INFO - Loaded index type: IndexIVFFlat
+2025-05-17 18:39:43,313 - rag_engine - INFO - Searching index type: IndexIVFFlat, k=10
+2025-05-17 18:39:43,313 - rag_engine - INFO - Initializing Groq client...
+2025-05-17 18:39:43,339 - rag_engine - INFO - Grok client initialized successfully.
+2025-05-17 18:39:44,381 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-17 18:39:44,386 - __main__ - INFO - Query answered successfully.
+2025-05-17 18:45:47,279 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-05-17 18:45:47,280 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: multi-qa-mpnet-base-dot-v1
+2025-05-17 18:45:52,334 - huggingface_hub.file_download - WARNING - Xet Storage is enabled for this repo, but the 'hf_xet' package is not installed. Falling back to regular HTTP download. For better performance, install the package with: `pip install huggingface_hub[hf_xet]` or `pip install hf_xet`
+2025-05-17 18:48:02,862 - __main__ - INFO - Processing query: What is the fee for C-3 upgradation?
+2025-05-17 18:48:02,863 - rag_engine - WARNING - Vector store invalid or not found. Creating a new one...
+2025-05-17 18:48:02,863 - rag_engine - INFO - Creating vector store...
+2025-05-17 18:48:02,943 - data_loader - INFO - Loaded document: Professional Engineer Registration
+2025-05-17 18:48:02,960 - data_loader - INFO - Loaded document: Registered Engineering Registration
+2025-05-17 18:48:02,979 - data_loader - INFO - Loaded document: Guidelines for Membership Renewal
+2025-05-17 18:48:02,979 - data_loader - INFO - Downloading: Guidelines for New, Renewal and Upgradation of Constructors/Operators Licence
+2025-05-17 18:48:07,623 - data_loader - ERROR - Failed to download Guidelines for New, Renewal and Upgradation of Constructors/Operators Licence: [Errno 2] No such file or directory: 'documents/Guidelines for New, Renewal and Upgradation of Constructors'
+2025-05-17 18:48:07,662 - data_loader - INFO - Loaded document: Professional Competency Profile
+2025-05-17 18:48:07,662 - rag_engine - INFO - Downloaded and loaded 4 documents: [None, None, None, None]
+2025-05-17 18:48:07,663 - rag_engine - INFO - Generated 34 document chunks
+2025-05-17 18:48:11,214 - rag_engine - INFO - Created IndexIVFFlat with dimension 768, nlist 5
+2025-05-17 18:48:11,332 - rag_engine - INFO - Vector store created and saved.
+2025-05-17 18:48:11,332 - rag_engine - INFO - Loaded index type: IndexIVFFlat
+2025-05-17 18:48:11,453 - rag_engine - INFO - Initializing Groq client...
+2025-05-17 18:48:11,477 - rag_engine - INFO - Grok client initialized successfully.
+2025-05-17 18:48:13,029 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-17 18:48:13,034 - __main__ - INFO - Query answered successfully.
+2025-05-17 18:49:04,139 - __main__ - INFO - Processing query: what is the difference between professional engineer and registered engineer?
+2025-05-17 18:49:04,146 - rag_engine - INFO - Loaded index type: IndexIVFFlat
+2025-05-17 18:49:04,230 - rag_engine - INFO - Initializing Groq client...
+2025-05-17 18:49:04,255 - rag_engine - INFO - Grok client initialized successfully.
+2025-05-17 18:49:05,598 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-17 18:49:05,601 - __main__ - INFO - Query answered successfully.
+2025-05-17 18:49:55,351 - __main__ - INFO - Processing query: What are the requirements for C-3 category
+2025-05-17 18:49:55,353 - rag_engine - INFO - Loaded index type: IndexIVFFlat
+2025-05-17 18:49:55,494 - rag_engine - INFO - Initializing Groq client...
+2025-05-17 18:49:55,519 - rag_engine - INFO - Grok client initialized successfully.
+2025-05-17 18:49:56,781 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-17 18:49:56,782 - __main__ - INFO - Query answered successfully.
+2025-05-17 18:51:04,258 - __main__ - INFO - Processing query: What are the Function/Duties of Enrolment Sub Committee?
+2025-05-17 18:51:04,267 - rag_engine - INFO - Loaded index type: IndexIVFFlat
+2025-05-17 18:51:04,416 - rag_engine - INFO - Initializing Groq client...
+2025-05-17 18:51:04,434 - rag_engine - INFO - Grok client initialized successfully.
+2025-05-17 18:51:05,515 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-17 18:51:05,519 - __main__ - INFO - Query answered successfully.
+2025-05-17 18:52:27,167 - __main__ - INFO - Processing query: what is ESC?
+2025-05-17 18:52:27,174 - rag_engine - INFO - Loaded index type: IndexIVFFlat
+2025-05-17 18:52:27,339 - rag_engine - INFO - Initializing Groq client...
+2025-05-17 18:52:27,361 - rag_engine - INFO - Grok client initialized successfully.
+2025-05-17 18:52:28,595 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-17 18:52:28,598 - __main__ - INFO - Query answered successfully.
+2025-05-17 18:53:03,074 - __main__ - INFO - Processing query: what is cpd?
+2025-05-17 18:53:03,078 - rag_engine - INFO - Loaded index type: IndexIVFFlat
+2025-05-17 18:53:03,200 - rag_engine - INFO - Initializing Groq client...
+2025-05-17 18:53:03,227 - rag_engine - INFO - Grok client initialized successfully.
+2025-05-17 18:53:04,278 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-17 18:53:04,281 - __main__ - INFO - Query answered successfully.
+2025-05-17 18:53:21,809 - __main__ - INFO - Processing query: how do i get CPD points?
+2025-05-17 18:53:21,812 - rag_engine - INFO - Loaded index type: IndexIVFFlat
+2025-05-17 18:53:22,079 - rag_engine - INFO - Initializing Groq client...
+2025-05-17 18:53:22,105 - rag_engine - INFO - Grok client initialized successfully.
+2025-05-17 18:53:23,456 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-17 18:53:23,458 - __main__ - INFO - Query answered successfully.
+2025-05-17 19:00:34,114 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-05-17 19:00:34,114 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: multi-qa-mpnet-base-dot-v1
+2025-05-17 19:00:50,308 - __main__ - INFO - Processing query: What is the fee for C-3 upgradation?
+2025-05-17 19:00:50,308 - rag_engine - WARNING - Vector store invalid or not found. Creating a new one...
+2025-05-17 19:00:50,308 - rag_engine - INFO - Creating vector store...
+2025-05-17 19:00:50,349 - data_loader - INFO - Loaded document: Professional Engineer Registration
+2025-05-17 19:00:50,369 - data_loader - INFO - Loaded document: Registered Engineering Registration
+2025-05-17 19:00:50,391 - data_loader - INFO - Loaded document: Guidelines for Membership Renewal
+2025-05-17 19:00:50,392 - data_loader - INFO - Downloading: Guidelines for New, Renewal and Upgradation of Constructors/Operators Licence
+2025-05-17 19:00:54,975 - data_loader - ERROR - Failed to download Guidelines for New, Renewal and Upgradation of Constructors/Operators Licence: [Errno 2] No such file or directory: 'documents/Guidelines for New, Renewal and Upgradation of Constructors'
+2025-05-17 19:00:55,015 - data_loader - INFO - Loaded document: Professional Competency Profile
+2025-05-17 19:00:55,016 - rag_engine - INFO - Downloaded and loaded 4 documents: [None, None, None, None]
+2025-05-17 19:00:55,016 - rag_engine - INFO - Generated 20 document chunks
+2025-05-17 19:00:58,681 - rag_engine - INFO - Created IndexIVFFlat with dimension 768, nlist 4
+2025-05-17 19:00:58,781 - rag_engine - INFO - Vector store created and saved.
+2025-05-17 19:00:58,782 - rag_engine - INFO - Loaded index type: IndexIVFFlat
+2025-05-17 19:00:58,832 - rag_engine - INFO - Initializing Groq client...
+2025-05-17 19:00:58,857 - rag_engine - INFO - Grok client initialized successfully.
+2025-05-17 19:01:01,182 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-17 19:01:01,187 - __main__ - INFO - Query answered successfully.
+2025-05-17 19:01:28,283 - __main__ - INFO - Processing query: what is the criteria to become a professional engineer?
+2025-05-17 19:01:28,284 - rag_engine - INFO - Loaded index type: IndexIVFFlat
+2025-05-17 19:01:28,433 - rag_engine - INFO - Initializing Groq client...
+2025-05-17 19:01:28,456 - rag_engine - INFO - Grok client initialized successfully.
+2025-05-17 19:01:31,264 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-17 19:01:31,267 - __main__ - INFO - Query answered successfully.
+2025-05-17 19:01:47,637 - __main__ - INFO - Processing query: What is the fee for C-3 upgradation?
+2025-05-17 19:01:47,641 - rag_engine - INFO - Loaded index type: IndexIVFFlat
+2025-05-17 19:01:47,826 - rag_engine - INFO - Initializing Groq client...
+2025-05-17 19:01:47,851 - rag_engine - INFO - Grok client initialized successfully.
+2025-05-17 19:01:48,691 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-05-17 19:01:48,692 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 5.000000 seconds
+2025-05-17 19:01:55,744 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-17 19:01:55,747 - __main__ - INFO - Query answered successfully.
+2025-05-17 19:03:56,153 - __main__ - INFO - Processing query: what is the ESC?
+2025-05-17 19:03:56,156 - rag_engine - INFO - Loaded index type: IndexIVFFlat
+2025-05-17 19:03:56,217 - rag_engine - INFO - Initializing Groq client...
+2025-05-17 19:03:56,252 - rag_engine - INFO - Grok client initialized successfully.
+2025-05-17 19:03:58,109 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-17 19:03:58,112 - __main__ - INFO - Query answered successfully.
+2025-05-17 19:04:19,820 - __main__ - INFO - Processing query: what is the Function/Duties of Enrolment Sub Committee (ESC)
+2025-05-17 19:04:19,823 - rag_engine - INFO - Loaded index type: IndexIVFFlat
+2025-05-17 19:04:19,962 - rag_engine - INFO - Initializing Groq client...
+2025-05-17 19:04:19,988 - rag_engine - INFO - Grok client initialized successfully.
+2025-05-17 19:04:21,762 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-17 19:04:21,765 - __main__ - INFO - Query answered successfully.
+2025-05-17 19:05:51,901 - __main__ - INFO - Processing query: what is Abolishment of Registration on Financial Soundness
+2025-05-17 19:05:51,908 - rag_engine - INFO - Loaded index type: IndexIVFFlat
+2025-05-17 19:05:51,996 - rag_engine - INFO - Initializing Groq client...
+2025-05-17 19:05:52,020 - rag_engine - INFO - Grok client initialized successfully.
+2025-05-17 19:05:53,923 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-17 19:05:53,926 - __main__ - INFO - Query answered successfully.
+2025-05-17 19:11:59,103 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-05-17 19:11:59,103 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: multi-qa-mpnet-base-dot-v1
+2025-05-17 19:12:08,734 - __main__ - INFO - Processing query: what is company categories, like c1 and c2 etc
+2025-05-17 19:12:08,735 - rag_engine - WARNING - Vector store invalid or not found. Creating a new one...
+2025-05-17 19:12:08,735 - rag_engine - INFO - Creating vector store...
+2025-05-17 19:12:08,774 - data_loader - INFO - Loaded document: Professional Engineer Registration
+2025-05-17 19:12:08,807 - data_loader - INFO - Loaded document: Registered Engineering Registration
+2025-05-17 19:12:08,836 - data_loader - INFO - Loaded document: Guidelines for Membership Renewal
+2025-05-17 19:12:08,836 - data_loader - INFO - Downloading: Guidelines for New, Renewal and Upgradation of Constructors/Operators Licence
+2025-05-17 19:12:14,249 - data_loader - ERROR - Failed to download Guidelines for New, Renewal and Upgradation of Constructors/Operators Licence: [Errno 2] No such file or directory: 'documents/Guidelines for New, Renewal and Upgradation of Constructors'
+2025-05-17 19:12:14,289 - data_loader - INFO - Loaded document: Professional Competency Profile
+2025-05-17 19:12:14,289 - rag_engine - INFO - Downloaded and loaded 4 documents: [None, None, None, None]
+2025-05-17 19:12:14,291 - rag_engine - INFO - Generated 15 document chunks
+2025-05-17 19:12:18,485 - rag_engine - INFO - Created IndexIVFFlat with dimension 768, nlist 3
+2025-05-17 19:12:18,672 - rag_engine - INFO - Vector store created and saved.
+2025-05-17 19:12:18,672 - rag_engine - INFO - Loaded index type: IndexIVFFlat
+2025-05-17 19:12:18,717 - rag_engine - INFO - Initializing Groq client...
+2025-05-17 19:12:18,743 - rag_engine - INFO - Grok client initialized successfully.
+2025-05-17 19:12:21,048 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-17 19:12:21,054 - __main__ - INFO - Query answered successfully.
+2025-05-17 19:15:41,074 - __main__ - INFO - Processing query: what is the difference between registered engineer and professional engineer?
+2025-05-17 19:15:41,081 - rag_engine - INFO - Loaded index type: IndexIVFFlat
+2025-05-17 19:15:41,192 - rag_engine - INFO - Initializing Groq client...
+2025-05-17 19:15:41,220 - rag_engine - INFO - Grok client initialized successfully.
+2025-05-17 19:15:43,003 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-17 19:15:43,006 - __main__ - INFO - Query answered successfully.
+2025-05-17 19:23:30,126 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-05-17 19:23:30,126 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: multi-qa-mpnet-base-dot-v1
+2025-05-17 19:23:44,331 - __main__ - INFO - Processing query: what is company categories, like c1 and c2 etc
+2025-05-17 19:23:44,434 - data_loader - INFO - Loaded document: Professional Engineer Registration
+2025-05-17 19:23:44,457 - data_loader - INFO - Loaded document: Registered Engineering Registration
+2025-05-17 19:23:44,475 - data_loader - INFO - Loaded document: Guidelines for Membership Renewal
+2025-05-17 19:23:44,475 - data_loader - INFO - Downloading: Guidelines for New, Renewal and Upgradation of Constructors/Operators Licence
+2025-05-17 19:23:49,140 - data_loader - ERROR - Failed to download Guidelines for New, Renewal and Upgradation of Constructors/Operators Licence: [Errno 2] No such file or directory: 'documents/Guidelines for New, Renewal and Upgradation of Constructors'
+2025-05-17 19:23:49,181 - data_loader - INFO - Loaded document: Professional Competency Profile
+2025-05-17 19:23:55,858 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-17 19:23:55,865 - __main__ - INFO - Query answered successfully.
+2025-05-17 19:25:11,849 - __main__ - INFO - Processing query: what is difference between registered engineer and professional engineer?
+2025-05-17 19:25:13,625 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-17 19:25:13,628 - __main__ - INFO - Query answered successfully.
+2025-05-17 19:25:36,158 - __main__ - INFO - Processing query: what is the criteria to get register with PEC ?
+2025-05-17 19:25:37,248 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-05-17 19:25:37,249 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 5.000000 seconds
+2025-05-17 19:25:45,138 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-17 19:25:45,142 - __main__ - INFO - Query answered successfully.

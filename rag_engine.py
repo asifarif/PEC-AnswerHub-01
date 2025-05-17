@@ -7,19 +7,13 @@ from groq import Groq
 from sentence_transformers import SentenceTransformer
 from data_loader import download_and_load_pdfs
 from langchain.docstore.document import Document
-import logging
+from langchain.text_splitter import RecursiveCharacterTextSplitter
 import torch
 import tenacity
 import hashlib
 import json
-
-# Set up logging
-logging.basicConfig(
-    level=logging.INFO,
-    filename="app.log",
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-)
-logger = logging.getLogger(__name__)
+import re
+from rank_bm25 import BM25Okapi
 
 # Disable CUDA to avoid PyTorch issues
 os.environ["CUDA_VISIBLE_DEVICES"] = ""
@@ -29,14 +23,14 @@ load_dotenv()
 # Validate GROQ_API_KEY
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 if not GROQ_API_KEY:
-    logger.error("GROQ_API_KEY not found in environment variables.")
     raise ValueError("GROQ_API_KEY is required.")
 
 # Check PyTorch version
 if not torch.__version__.startswith("2."):
-    logger.warning(f"PyTorch version {torch.__version__} may not be compatible. Expected 2.x.")
+    print(f"Warning: PyTorch version {torch.__version__} may not be compatible. Expected 2.x.")
 
-EMBEDDING_MODEL = SentenceTransformer("all-MiniLM-L12-v2")
+# Use a QA-optimized embedding model
+EMBEDDING_MODEL = SentenceTransformer("multi-qa-mpnet-base-dot-v1")
 VECTOR_STORE_PATH = "vector_store.pkl"
 GROQ_MODEL = "llama3-70b-8192"
 DOCUMENTS_DIR = "documents"
@@ -67,7 +61,6 @@ def compute_documents_hash():
         combined = policy_hash + "".join(sorted(pdf_hashes))
         return hashlib.sha256(combined.encode()).hexdigest()
     except Exception as e:
-        logger.error(f"Error computing documents hash: {str(e)}")
         return None
 
 def check_vector_store_validity():
@@ -84,30 +77,58 @@ def check_vector_store_validity():
             stored_hash = pickle.load(f)
         return current_hash == stored_hash
     except Exception as e:
-        logger.error(f"Error checking vector store hash: {str(e)}")
         return False
 
+def preprocess_document(text):
+    """Preprocess document while preserving numbers, units, and table structures."""
+    # Expand references like "Table A & B"
+    table_a = "Constructor's Categories: C-A (No limit, 200 PCPs, 2 PEs with 20 years experience, 5 REs as trainees), C-B (Up to 4000 million rupees, 120 PCPs, 2 PEs with 15 years experience, 3 REs as trainees), C-1 (Up to 2500 million rupees, 90 PCPs, 2 PEs with 10 years experience, 2 REs as trainees), C-2 (Up to 1000 million rupees, 35 PCPs, 1 PE and REs, 1 RE as trainee), C-3 (Up to 500 million rupees, 20 PCPs, 50% REs), C-4 (Up to 200 million rupees, 15 PCPs, 50% REs), C-5 (Up to 65 million rupees, 5 PCPs, 1 RE), C-6 (Up to 25 million rupees, 5 PCPs, 1 RE)"
+    table_b = "Operator's Categories: O-A (No limit, 150 PCPs, 2 PEs with 20 years experience, 5 REs as trainees), O-B (Up to 2000 million rupees, 100 PCPs, 2 PEs with 15 years experience, 3 REs as trainees), O-1 (Up to 100 million rupees, 75 PCPs, 2 PEs with 10 years experience, 2 REs as trainees), O-2 (Up to 500 million rupees, 35 PCPs, 1 PE and REs, 1 RE as trainee), O-3 (Up to 200 million rupees, 20 PCPs, 50% REs), O-4 (Up to 100 million rupees, 15 PCPs, 50% REs), O-5 (Up to 30 million rupees, 5 PCPs, 1 RE), O-6 (Up to 20 million rupees, 5 PCPs, 1 RE)"
+    text = text.replace("Table A & B", f"{table_a}\n{table_b}")
+    
+    # Preserve numbers, units, and table-related characters
+    text = re.sub(r'\n+', '\n', text)  # Remove excessive newlines
+    text = re.sub(r'[^\w\s\d.,/%$PKR\-:=|]', ' ', text)  # Keep table delimiters and units
+    return text
+
+def chunk_documents(text):
+    """Chunk text with larger size to preserve tables, using page breaks if available."""
+    text_splitter = RecursiveCharacterTextSplitter(
+        chunk_size=1200,  # Increased to keep tables intact
+        chunk_overlap=300,
+        separators=["\n\n\n", "\n\n", "\n", ". ", " ", "-"]  # Prioritize paragraph and table breaks
+    )
+    chunks = text_splitter.split_text(text)
+    valid_chunks = [chunk for chunk in chunks if len(chunk.strip()) > 100]  # Higher threshold for meaningful content
+    return valid_chunks
+
 def create_vector_store():
-    """Create and save a FAISS vector store from PEC documents."""
-    logger.info("Creating vector store...")
+    """Create and save a FAISS vector store from PEC documents with page metadata."""
+    print("Creating vector store...")
     docs = download_and_load_pdfs()
+    print(f"Downloaded and loaded {len(docs)} documents: {[doc.metadata.get('source') for doc in docs if isinstance(doc, Document)]}")
 
     texts, metadatas = [], []
     for doc in docs:
         if not isinstance(doc, Document):
+            print(f"Skipping invalid document: {doc}")
             continue
 
         text = doc.page_content
-        metadata = doc.metadata
+        metadata = doc.metadata.copy()  # Ensure metadata is not modified
+        metadata["page"] = metadata.get("page", 0)  # Default to 0 if page not present
+        if not text or len(text.strip()) < 50:
+            print(f"Skipping empty or too short document content (page {metadata['page']}): {text[:100]}...")
+            continue
 
-        # Create overlapping chunks (1000 chars, 200-char overlap)
-        chunk_size = 1000
-        overlap = 200
-        chunks = []
-        for i in range(0, len(text), chunk_size - overlap):
-            chunk = text[i:i + chunk_size]
-            if len(chunk) > 50:  # Ignore very small chunks
-                chunks.append(chunk)
+        # Preprocess the document content
+        processed_text = preprocess_document(text)
+        # Create semantic chunks
+        chunks = chunk_documents(processed_text)
+        if not chunks:
+            print(f"No valid chunks generated from content (page {metadata['page']}): {processed_text[:100]}...")
+            continue
+
         for chunk in chunks:
             texts.append(chunk)
             metadatas.append({
@@ -115,57 +136,68 @@ def create_vector_store():
                 "chunk": chunk
             })
 
-    logger.info(f"Generated {len(texts)} document chunks")
+    print(f"Generated {len(texts)} document chunks")
     if len(texts) == 0:
-        logger.error("No valid document chunks generated.")
         raise ValueError("No valid document chunks generated.")
 
     embeddings = EMBEDDING_MODEL.encode(texts, show_progress_bar=True)
     dimension = embeddings.shape[1]
     
     # Use IndexIVFFlat with dynamic nlist
-    nlist = min(10, len(texts))  # Ensure nlist <= number of chunks
+    nlist = min(len(texts), max(1, int(np.sqrt(len(texts)))))
     quantizer = faiss.IndexFlatL2(dimension)
     index = faiss.IndexIVFFlat(quantizer, dimension, nlist)
-    logger.info(f"Created IndexIVFFlat with dimension {dimension}, nlist {nlist}")
-    
-    # Train index only if sufficient data
-    if len(embeddings) < nlist:
-        logger.error(f"Insufficient chunks ({len(embeddings)}) for nlist ({nlist})")
-        raise ValueError(f"Number of chunks ({len(embeddings)}) must be at least {nlist}")
+    print(f"Created IndexIVFFlat with dimension {dimension}, nlist {nlist}")
     
     index.train(np.array(embeddings, dtype=np.float32))
     index.add(np.array(embeddings, dtype=np.float32))
-    index.nprobe = 5  # Reduced for smaller nlist
+    index.nprobe = max(1, min(nlist, 10))
 
     with open(VECTOR_STORE_PATH, "wb") as f:
         pickle.dump((index, texts, metadatas), f)
     
-    # Save hash of current documents
     current_hash = compute_documents_hash()
     if current_hash:
         with open(HASH_PATH, "wb") as f:
             pickle.dump(current_hash, f)
     
-    logger.info("Vector store created and saved.")
+    print("Vector store created and saved.")
 
 def load_vector_store():
     """Load the FAISS vector store, regenerating if invalid."""
     if not check_vector_store_validity():
-        logger.warning("Vector store invalid or not found. Creating a new one...")
+        print("Vector store invalid or not found. Creating a new one...")
         create_vector_store()
     with open(VECTOR_STORE_PATH, "rb") as f:
         index, texts, metadatas = pickle.load(f)
-    logger.info(f"Loaded index type: {type(index).__name__}")
+    print(f"Loaded index type: {type(index).__name__}")
     return index, texts, metadatas
 
-def retrieve_chunks(query, k=10):
-    """Retrieve top-k relevant document chunks for the query."""
+def retrieve_chunks(query, k=25):  # Increased k for more candidates
+    """Retrieve top-k relevant document chunks with page-aware hybrid ranking."""
     index, texts, metadatas = load_vector_store()
-    query_embedding = EMBEDDING_MODEL.encode([query])
-    logger.info(f"Searching index type: {type(index).__name__}, k={k}")
-    D, I = index.search(np.array(query_embedding, dtype=np.float32), k)
-    return [metadatas[i] for i in I[0]]
+    query_embedding = EMBEDDING_MODEL.encode([query.lower()])  # Lowercase for consistency
+    D, I = index.search(np.array(query_embedding, dtype=np.float32), k * 2)  # Retrieve more candidates
+    
+    # BM25 keyword search
+    tokenized_texts = [text.split() for text in texts]
+    bm25 = BM25Okapi(tokenized_texts)
+    tokenized_query = query.lower().split()
+    bm25_scores = bm25.get_scores(tokenized_query)
+    
+    # Combine FAISS distance and BM25 scores, prioritize page relevance for upgradation
+    combined_scores = []
+    for j, i in enumerate(I[0]):
+        if i < len(bm25_scores):
+            score = D[0][j] + (1 - bm25_scores[i]) * 5  # Weight BM25 higher
+            if "upgradation" in query.lower() and metadatas[i].get("page") == 13:  # Target Page 13 for upgradation
+                score -= 15  # Strong boost for Page 13
+            combined_scores.append((i, score))
+    
+    combined_scores.sort(key=lambda x: x[1])
+    top_k_indices = [i for i, _ in combined_scores[:k]]
+    
+    return [metadatas[i] for i in top_k_indices]
 
 @tenacity.retry(
     stop=tenacity.stop_after_attempt(3),
@@ -174,18 +206,18 @@ def retrieve_chunks(query, k=10):
     reraise=True
 )
 def query_groq(query):
-    """Query the Grok API with retrieved context."""
+    """Query the Groq API with retrieved context and metadata."""
     if not query.strip():
         return "Please provide a valid question."
 
     chunks = retrieve_chunks(query)
     context = "\n\n".join([
-        f"Title: {c.get('title')}\nPolicy Number: {c.get('policy_number')}\nApproval Date: {c.get('approval_date')}\nContent: {c.get('chunk')}"
+        f"Page {c.get('page', 'N/A')}: {c.get('chunk', '')}"
         for c in chunks
     ])
 
     prompt = f"""
-You are an AI assistant for the Pakistan Engineering Council (PEC). Based on the context below, provide a precise answer to the user's question about PEC policies. 
+You are an AI assistant for the Pakistan Engineering Council (PEC). Based on the context below, provide a precise answer to the user's question about PEC policies. Focus on extracting specific details like fees, requirements, or duties from tables or text. If the answer involves numbers, include the exact value and unit (e.g., PKR).  
 
 Context:
 {context}
@@ -194,22 +226,20 @@ User Question: {query}
 Answer:
 """
 
-    logger.info("Initializing Groq client...")
+    print("Initializing Groq client...")
     try:
         client = Groq(api_key=GROQ_API_KEY)
-        logger.info("Grok client initialized successfully.")
+        print("Grok client initialized successfully.")
     except Exception as e:
-        logger.error(f"Failed to initialize Groq client: {str(e)}")
         raise
 
     try:
         response = client.chat.completions.create(
             model=GROQ_MODEL,
             messages=[{"role": "user", "content": prompt}],
-            temperature=0.2,
-            max_tokens=500
+            temperature=0.1,
+            max_tokens=700  # Increased for detailed responses
         )
         return response.choices[0].message.content.strip()
     except Exception as e:
-        logger.error(f"Error querying Grok API: {str(e)}")
         raise

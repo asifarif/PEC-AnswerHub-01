@@ -82,14 +82,13 @@ def query_groq(query):
     ])
 
     prompt = f"""
-You are a PEC policy assistant. Based on the context below, answer the user's question as clearly and concisely as possible.
+You are an AI assistant specialized in PEC (Pakistan Engineering Council) policies. Use the context provided to answer the user's query in a well-structured, helpful, and complete way.
 
-If the question is about registration fees, eligibility, or upgradation:
-- Extract any relevant fee or category information.
-- If tables are helpful, convert them to bullet points or readable Markdown.
-- Always reference the page number if possible.
-
-If the question is not related to fees, ignore the tables and just provide a direct answer from the context.
+Instructions:
+- If the query is about registration categories, fees, upgradation rules, or policy numbers: include requirements.
+- If the query is general (e.g., differences, eligibility, documentation): give a clear explanation with comparisons or bullets where helpful.
+- Only include tables if directly relevant to the query.
+- If information is not found in the context, say so clearly.
 
 Context:
 {context}

@@ -1,5 +1,10 @@
-2025-05-17 19:42:38,906 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
-2025-05-17 19:42:38,906 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: multi-qa-mpnet-base-dot-v1
-2025-05-17 19:42:55,508 - __main__ - INFO - Processing query: what is the criteria to become a professional engineer?
-2025-05-17 19:42:58,934 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
-2025-05-17 19:42:58,939 - __main__ - INFO - Query answered successfully.
+2025-05-17 22:14:14,690 - __main__ - INFO - Processing query: What is the fee for C-3 upgradation?
+2025-05-17 22:15:00,599 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-17 22:15:00,607 - __main__ - INFO - Query answered successfully.
+2025-05-17 22:15:38,928 - __main__ - INFO - Processing query: what is the difference between registered engineer and professional engineer?
+2025-05-17 22:15:41,071 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-17 22:15:41,075 - __main__ - INFO - Query answered successfully.
+2025-05-17 22:23:26,237 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: intfloat/e5-large-v2
+2025-05-17 22:23:35,438 - __main__ - INFO - Processing query: What is the fee for C-3 upgradation?
+2025-05-17 22:25:18,578 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-17 22:25:18,583 - __main__ - INFO - Query answered successfully.

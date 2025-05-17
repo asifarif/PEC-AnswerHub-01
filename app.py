@@ -2,6 +2,8 @@ import streamlit as st
 from rag_engine import query_groq
 import logging
 import base64
+import os
+os.environ["PYTORCH_JIT"] = "0"
 
 # Set up logging
 logging.basicConfig(
@@ -27,14 +29,14 @@ def main():
         <div class='header'>
             <img src='{}' alt='PEC Logo' class='logo'/>
             <h1>PEC AnswerHub</h1>
-            <p>Your AI-Powered Assistant for PEC Registration Queries</p>
+            <p>Your AI-Powered Assistant for PEC Engineer Registration Queries</p>
         </div>
         """.format(PEC_LOGO_BASE64),
         unsafe_allow_html=True
     )
 
     # Hero section
-    st.markdown("<div class='hero'>Simplifying PEC Registration with AI</div>", unsafe_allow_html=True)
+    st.markdown("<div class='hero'>Simplifying PEC Engineers Registration with AI</div>", unsafe_allow_html=True)
 
     # Query input and submit button
     st.markdown("<div class='query-container'>", unsafe_allow_html=True)

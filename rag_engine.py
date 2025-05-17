@@ -12,8 +12,9 @@ import re
 load_dotenv()
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 VECTOR_STORE_PATH = "vector_store.pkl"
-#EMBEDDING_MODEL = SentenceTransformer("intfloat/e5-large-v2")
-EMBEDDING_MODEL = SentenceTransformer("intfloat/e5-large-v2", device="cpu")
+EMBEDDING_MODEL = SentenceTransformer("all-MiniLM-L6-v2")
+#EMBEDDING_MODEL = SentenceTransformer("intfloat/e5-large-v2", device="cpu")
+
 
 def preprocess_document(text):
     """Preprocess document to preserve units and table structures."""

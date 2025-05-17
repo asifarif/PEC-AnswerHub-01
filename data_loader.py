@@ -96,4 +96,4 @@ def download_and_load_pdfs(json_path="policy_links.json"):
         except Exception as e:
             logger.error(f"Failed to extract {title}: {str(e)}")
 
-    return documents
+    return documents 

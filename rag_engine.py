@@ -82,7 +82,7 @@ def query_groq(query):
 You are a PEC policy assistant. Based on the context below, extract registration fee tables and answer the user's query clearly.
 If the question relates to fees or categories:
 - Find and include any structured tables that match.
-- Convert them to bullet points or Markdown.
+- Convert them to bullet points or Markdown.  
 
 
 Context:

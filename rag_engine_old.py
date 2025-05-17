@@ -114,7 +114,7 @@ Answer:
         response = client.chat.completions.create(
             model=GROQ_MODEL,
             messages=[{"role": "user", "content": prompt}],
-            temperature=0.2,
+            temperature=0.3,
             max_tokens=500
         )
         return response.choices[0].message.content.strip()

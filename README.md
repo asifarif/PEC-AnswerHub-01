@@ -15,7 +15,7 @@ short_description: 'PEC AI-powered policies assistant'
 An AI-powered assistant for PEC registration queries based on official documents.
 
 Setup:
-Clone the repository: git clone https://github.com/your-username/PEC-AnswerHub.git
+Clone the repository: git clone https://github.com/asifarif/PEC-AnswerHub.git
 Create a virtual environment: python3.10 -m venv venv
 Activate the environment: source venv/bin/activate (Linux/Mac) or venv\Scripts\activate (Windows)
 Install dependencies: pip install -r requirements.txt

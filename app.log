@@ -48,3 +48,17 @@
 2025-05-17 01:19:58,030 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
 2025-05-17 01:20:21,477 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
 2025-05-17 01:20:46,925 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-17 13:05:04,567 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-17 13:05:15,544 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-05-17 13:05:29,314 - rag_engine_old - WARNING - Vector store not found. Creating a new one...
+2025-05-17 13:05:29,316 - rag_engine_old - INFO - Creating vector store...
+2025-05-17 13:05:29,409 - data_loader - INFO - Loaded document: Professional Engineer Registration
+2025-05-17 13:05:29,430 - data_loader - INFO - Loaded document: Registered Engineering Registration
+2025-05-17 13:05:29,455 - data_loader - INFO - Loaded document: Guidelines for Membership Renewal
+2025-05-17 13:05:29,455 - data_loader - INFO - Downloading: Guidelines for New, Renewal and Upgradation of Constructors/Operators Licence
+2025-05-17 13:05:34,069 - data_loader - ERROR - Failed to download Guidelines for New, Renewal and Upgradation of Constructors/Operators Licence: [Errno 2] No such file or directory: 'documents/Guidelines for New, Renewal and Upgradation of Constructors'
+2025-05-17 13:05:34,139 - data_loader - INFO - Loaded document: Professional Competency Profile
+2025-05-17 13:05:34,896 - rag_engine_old - INFO - Vector store created and saved.
+2025-05-17 13:05:36,827 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-17 13:06:16,876 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-17 13:07:07,453 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"

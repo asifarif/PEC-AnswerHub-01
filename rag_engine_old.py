@@ -34,7 +34,7 @@ if not GROQ_API_KEY:
 if not torch.__version__.startswith("2."):
     logger.warning(f"PyTorch version {torch.__version__} may not be compatible. Expected 2.x.")
 
-EMBEDDING_MODEL = SentenceTransformer("all-MiniLM-L12-v2")
+EMBEDDING_MODEL = SentenceTransformer("all-MiniLM-L6-v2")
 VECTOR_STORE_PATH = "vector_store.pkl"
 GROQ_MODEL = "llama3-70b-8192"
 
@@ -51,14 +51,7 @@ def create_vector_store():
         text = doc.page_content
         metadata = doc.metadata
 
-        # Create overlapping chunks (1000 chars, 200-char overlap)
-        chunk_size = 1000
-        overlap = 200
-        chunks = []
-        for i in range(0, len(text), chunk_size - overlap):
-            chunk = text[i:i + chunk_size]
-            if len(chunk) > 50:  # Ignore very small chunks
-                chunks.append(chunk)
+        chunks = [text[i:i+500] for i in range(0, len(text), 500)]
         for chunk in chunks:
             texts.append(chunk)
             metadatas.append({
@@ -67,15 +60,8 @@ def create_vector_store():
             })
 
     embeddings = EMBEDDING_MODEL.encode(texts, show_progress_bar=True)
-    dimension = embeddings.shape[1]
-    
-    # Use IndexIVFFlat for faster, scalable search
-    nlist = 100  # Number of clusters
-    quantizer = faiss.IndexFlatL2(dimension)
-    index = faiss.IndexIVFFlat(quantizer, dimension, nlist)
-    index.train(np.array(embeddings, dtype=np.float32))
+    index = faiss.IndexFlatL2(embeddings.shape[1])
     index.add(np.array(embeddings, dtype=np.float32))
-    index.nprobe = 10  # Number of clusters to search (trade-off between speed and accuracy)
 
     with open(VECTOR_STORE_PATH, "wb") as f:
         pickle.dump((index, texts, metadatas), f)
@@ -89,7 +75,7 @@ def load_vector_store():
     with open(VECTOR_STORE_PATH, "rb") as f:
         return pickle.load(f)
 
-def retrieve_chunks(query, k=10):
+def retrieve_chunks(query, k=5):
     """Retrieve top-k relevant document chunks for the query."""
     index, texts, metadatas = load_vector_store()
     query_embedding = EMBEDDING_MODEL.encode([query])
@@ -114,7 +100,7 @@ def query_groq(query):
     ])
 
     prompt = f"""
-You are an AI assistant for the Pakistan Engineering Council (PEC). Based on the context below, provide a precise answer to the user's question about PEC  policies. Include relevant policy title, policy number, and approval date if available.
+You are an AI assistant for the Pakistan Engineering Council (PEC). Based on the context below, provide a precise answer to the user's question about PEC registration policies. Include relevant policy title, policy number, and approval date if available.
 
 Context:
 {context}
@@ -123,14 +109,7 @@ User Question: {query}
 Answer:
 """
 
-    logger.info("Initializing Groq client...")
-    try:
-        client = Groq(api_key=GROQ_API_KEY)
-        logger.info("Groq client initialized successfully.")
-    except Exception as e:
-        logger.error(f"Failed to initialize Groq client: {str(e)}")
-        raise
-
+    client = Groq(api_key=GROQ_API_KEY)
     try:
         response = client.chat.completions.create(
             model=GROQ_MODEL,
@@ -142,3 +121,4 @@ Answer:
     except Exception as e:
         logger.error(f"Error querying Grok API: {str(e)}")
         raise
+    

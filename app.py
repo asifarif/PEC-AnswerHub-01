@@ -1,5 +1,5 @@
 import streamlit as st
-from rag_engine import query_groq
+from rag_engine_old import query_groq
 
 st.set_page_config(page_title="PEC AnswerHub", layout="wide")
 st.title("📘 Pakistan Engineering Council (PEC) AnswerHub")
@@ -23,4 +23,3 @@ with st.sidebar.form("feedback_form"):
         with open("feedback.txt", "a") as f:
             f.write(f"{feedback}\n")
         st.success("Thank you for your feedback!")
-        

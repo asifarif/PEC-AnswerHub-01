@@ -77,7 +77,7 @@ def main():
 
     # Feedback section
     st.markdown("<hr>", unsafe_allow_html=True)
-    feedback = st.text_area("Provide feedback:", key="feedback")
+    feedback = st.text_area("Provide feedback:")
     if st.button("Submit Feedback"):
         if feedback.strip():
             with open("feedback.txt", "a") as f:

@@ -79,12 +79,14 @@ def query_groq(query):
     chunks = retrieve_chunks(query)
     context = "\n\n".join([f"Page {c['page']}: {c['chunk']}" for c in chunks])
 
-    prompt = f"""
-You are a PEC policy assistant. Based on the context below, extract registration fee tables and answer the user's query clearly.
-If the question relates to fees or categories:
-- Find and include any structured tables that match.
-- Convert them to bullet points or Markdown.  
+prompt = f"""
+You are a PEC policy assistant. Based on the context below, answer the user's question as clearly and concisely as possible.
 
+If the question is about registration fees, eligibility, or upgradation:
+- Extract any relevant fee or category information.
+- If tables are helpful, convert them to bullet points or readable Markdown.
+
+If the question is **not related to fees**, ignore the tables and just provide a direct answer from the context.
 
 Context:
 {context}

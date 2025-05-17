@@ -1,21 +1,43 @@
-# data_loader.py
-import os
 import json
+import requests
 import pdfplumber
+import io
 from langchain.docstore.document import Document
 import logging
 
 logging.basicConfig(
     level=logging.ERROR,
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
     filename="app.log",
 )
 logger = logging.getLogger(__name__)
 
-DOCUMENTS_DIR = "documents"
+def download_pdf_from_google_drive(file_id):
+    """Download a PDF from Google Drive using file ID and return bytes."""
+    try:
+        URL = "https://drive.google.com/uc?export=download"
+        session = requests.Session()
+        response = session.get(URL, params={'id': file_id}, stream=True)
+        
+        # Handle Google Drive's confirmation page for large files
+        for key, value in response.cookies.items():
+            if key.startswith('download_warning'):
+                params = {'id': file_id, 'confirm': value}
+                response = session.get(URL, params=params, stream=True)
+                break
+        
+        if response.status_code == 200:
+            return response.content
+        else:
+            logger.error(f"Failed to download file {file_id}: Status {response.status_code}")
+            return None
+    except Exception as e:
+        logger.error(f"Error downloading file {file_id}: {str(e)}")
+        return None
 
 def download_and_load_pdfs(json_path="policy_links.json"):
-    os.makedirs(DOCUMENTS_DIR, exist_ok=True)
+    """Load PDF documents from Google Drive links specified in JSON."""
+    documents = []
 
     try:
         with open(json_path, "r") as f:
@@ -27,16 +49,23 @@ def download_and_load_pdfs(json_path="policy_links.json"):
         logger.error(f"Error loading JSON file: {str(e)}")
         return []
 
-    documents = []
     for item in data["policies"]:
         title = item.get("title")
         gdrive_id = item.get("gdrive_id")
-        filename = os.path.join(DOCUMENTS_DIR, f"{title}.pdf")
 
-        # Download skipped for now (assuming files are present)
+        if not title or not gdrive_id:
+            logger.error(f"Skipping invalid entry: {item}")
+            continue
+
+        # Download PDF
+        pdf_bytes = download_pdf_from_google_drive(gdrive_id)
+        if not pdf_bytes:
+            logger.error(f"Failed to download PDF for {title}")
+            continue
 
         try:
-            with pdfplumber.open(filename) as pdf:
+            # Process PDF in-memory
+            with pdfplumber.open(io.BytesIO(pdf_bytes)) as pdf:
                 for i, page in enumerate(pdf.pages):
                     text = page.extract_text() or ""
                     table_text = ""

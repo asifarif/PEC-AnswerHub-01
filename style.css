@@ -10,7 +10,6 @@ body {
 .header {
     text-align: center;
     padding: 20px 10px;
-    background-color: #f5fdfb;
     border-bottom: 2px solid #00796B;
 }
 
@@ -45,8 +44,8 @@ input[type="text"] {
     font-size: 1.1em;
     border: 2px solid #00796B;
     border-radius: 5px;
-    margin-bottom: 10px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin-bottom: 8px;
+    box-shadow: 0 2px 2px rgba(0,0,0,0.1);
     transition: border 0.2s ease;
 }
 

@@ -67,7 +67,7 @@ def load_vector_store():
     with open(VECTOR_STORE_PATH, "rb") as f:
         return pickle.load(f)
 
-def retrieve_chunks(query, k=15):  # Increased to 15
+def retrieve_chunks(query, k=20):  # Increased to 20
     index, texts, metadatas = load_vector_store()
     query_embedding = EMBEDDING_MODEL.encode([query])
     D, I = index.search(np.array(query_embedding, dtype=np.float32), k)
@@ -108,7 +108,7 @@ Answer:
     response = client.chat.completions.create(
         model="llama3-70b-8192",
         messages=[{"role": "user", "content": prompt}],
-        temperature=0.2,
-        max_tokens=700
+        temperature=0.25,
+        max_tokens=1000
     )
     return response.choices[0].message.content.strip()
